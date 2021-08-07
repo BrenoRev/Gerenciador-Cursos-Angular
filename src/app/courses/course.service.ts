@@ -1,4 +1,5 @@
 import { HttpClient } from "@angular/common/http";
+import { analyzeAndValidateNgModules } from "@angular/compiler";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Course } from "./course";
@@ -25,6 +26,14 @@ export class CourseService{
             return this.httpClient.put<Course>(`${this.coursesURL}/${course.id}`, course);
         }else{
             return this.httpClient.post<Course>(`${this.coursesURL}`, course);
+        }
+    }
+
+    deleteById(id: number): Observable<any>{
+        if(confirm('Você confirma a deleção do curso?')){
+            return this.httpClient.delete<any>(`${this.coursesURL}/${id}`);
+        } else {
+            return this.httpClient.delete<any>('');
         }
     }
 }

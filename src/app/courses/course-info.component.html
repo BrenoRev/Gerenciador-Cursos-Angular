@@ -1,1 +1,47 @@
-<h2>Course Id= {{courseId}}</h2>
+<h2>Course Info</h2>
+<hr>
+
+<form #courseForm="ngForm">
+    <div class="form-group row">
+         <label class="col-sm-2 col-form-label"> Name </label>
+        <div class="col-sm-10">
+            <input [(ngModel)]="course.name" name="name" #courseName="ngModel" [ngClass]="{'is-invalid': courseName.invalid}" required class="form-control">
+            <div class="invalid-feedback">
+                <span>Course name is required</span>
+            </div>
+        </div>
+    </div>
+<hr>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"> Price </label>
+       <div class="col-sm-10">
+           <input [(ngModel)]="course.price" name="price" #coursePrice="ngModel" [ngClass]="{'is-invalid': coursePrice.invalid}" type="number" required class="form-control">
+           <div class="invalid-feedback">
+               <span>Price is required</span>
+           </div>
+       </div>
+   </div>
+   <hr>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"> Rating </label>
+       <div class="col-sm-10">
+           <input [(ngModel)]="course.rating" name="rating" #courseRating="ngModel" [ngClass]="{'is-invalid': courseRating.invalid}" type="number" required class="form-control" min="1" max="5" step="0.5">
+           <div class="invalid-feedback">
+               <span>Rating is required</span>
+           </div>
+       </div>
+   </div>
+   <hr>
+   <div class="form-group row">
+       <label class="col-sm-2 col-form-label"> Description </label>
+      <div class="col-sm-10">
+          <textarea [(ngModel)]="course.description" name="description" #courseDescription="ngModel" [ngClass]="{'is-invalid': courseDescription.invalid}" required class="form-control"> </textarea>
+          <div class="invalid-feedback">
+              <span>Description is required</span>
+          </div>
+      </div>
+  </div>
+
+    <button [disabled]="courseForm.invalid" (click)="save()" class="btn btn-primary mr-10">Save</button>
+    <button [routerLink]="['/courses']" class="btn btn-secondary ml-2">Back</button>
+</form>

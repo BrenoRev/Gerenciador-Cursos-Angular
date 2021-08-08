@@ -4,30 +4,24 @@ import { RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
-import { Error404Component } from './error-404/error-404.component';
+import { Error404Component } from './core/component/error-404/error-404.component';
 
 import { CourseModule } from './courses/course.module';
 import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    Error404Component
+    AppComponent
   ],
   imports: [
     CoreModule,
     BrowserModule,
     HttpClientModule,
     CourseModule,
-    RouterModule.forRoot([
+    RouterModule.forChild([
       {
          // Rota vázia
         path: '', redirectTo: 'courses', pathMatch: 'full'
-      },
-      
-      {
-          // Rota não encontrada
-        path: '**', component: Error404Component
       }
     ])
   ],
